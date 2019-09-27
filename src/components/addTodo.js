@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import AddToList from '../actions/addTodo';
 
-const AddTodo = (dispatch) => {
+const AddTodo = (props) => {
   const [value, setValue] = useState('');
   
   return (
@@ -11,7 +13,7 @@ const AddTodo = (dispatch) => {
         if(!value.trim()){
           return
         }
-        dispatch(AddTodo(value));
+        props.dispatch(AddToList(value));
         setValue('');
       }}
     >
@@ -26,4 +28,10 @@ const AddTodo = (dispatch) => {
   );
 }
 
-export default AddTodo;
+const mapStateToProps = (store) => {
+  return {
+    dispatch: store.dispatch
+  }
+}
+
+export default connect(mapStateToProps)(AddTodo);

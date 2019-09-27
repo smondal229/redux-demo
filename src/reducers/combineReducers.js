@@ -3,7 +3,7 @@ import ListReducer from './listReducer';
 
 const RootReducer = combineReducers(
   {
-    reduceList: ListReducer
+    ListReducer
   }
 )
 
