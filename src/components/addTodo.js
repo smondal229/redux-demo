@@ -13,7 +13,7 @@ const AddTodo = (props) => {
         if(!value.trim()){
           return
         }
-        props.dispatch(AddToList(value));
+        props.addItem(value);
         setValue('');
       }}
     >
@@ -28,10 +28,12 @@ const AddTodo = (props) => {
   );
 }
 
-const mapStateToProps = (store) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    dispatch: store.dispatch
+    addItem: (value)=> {
+      dispatch(AddToList(value))
+    }
   }
 }
 
-export default connect(mapStateToProps)(AddTodo);
+export default connect(null, mapDispatchToProps)(AddTodo);
